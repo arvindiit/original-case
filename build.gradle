@@ -1,0 +1,44 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.4.3.RELEASE")
+    }
+}
+
+plugins {
+    id 'nebula.optional-base' version '3.0.3'
+    id 'nebula.provided-base' version '3.0.3'
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'eclipse'
+apply plugin: 'spring-boot'
+apply plugin: 'nebula.provided-base'
+
+jar {
+    baseName = 'destination-finder-client'
+    version =  '0.1.0'
+}
+
+repositories {
+    mavenCentral()
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-thymeleaf")
+
+    compile("org.springframework.boot:spring-boot-starter-web:1.4.3.RELEASE") {
+        exclude module: "spring-boot-starter-tomcat"
+    }
+    compile("org.springframework.boot:spring-boot-starter-jetty")
+    compile("org.springframework.boot:spring-boot-starter-actuator")
+    compile("org.webjars.bower:typeahead.js:0.11.1")
+
+    testCompile("junit:junit")
+}
